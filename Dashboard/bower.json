@@ -1,0 +1,14 @@
+{
+  "name": "zk client",
+  "description": "dashboard server node",
+  "main": "server.js",
+  "authors": [
+    "lb yyp"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/zhikou/zhikou",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "requirejs": "^2.3.3"
+  }
+}
