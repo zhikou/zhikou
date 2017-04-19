@@ -1,7 +1,7 @@
-#step 1
+# step 1
   - npm install 
   - bower install
 
 
-#step 2
+# step 2
  - `npm run start` to start node server 
