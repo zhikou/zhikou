@@ -3,3 +3,8 @@
       @content;
     }
 }
+
+@mixin item($width) {
+  width: $width;
+  padding: $width/7;
+}

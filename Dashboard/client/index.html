@@ -7,12 +7,67 @@
     <link rel="shortcut icon" href="images/cool.ico" type="image/vnd.microsoft.icon" />
     <link rel="icon" href="images/cool.ico" type="image/vnd.microsoft.icon" />
     <link rel="stylesheet" type="text/css" href="css/my-bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/all.css">
 </head>
 
 <body>
     <div class="wraper">
-    <header></header>
+        <header id="header">
+            <nav role="navigation">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="header-logo">
+                                <a href="/" class="logo-image"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="header-nav">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;" ui-sref="HomePage" ui-sref-opts="{reload:true}" ui-sref-active="header-active">API</a>
+                                        <span></span>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" ui-sref-active="header-active">API</a>
+                                        <span></span>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"  ui-sref-active="header-active">API</a>
+                                        <span></span>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"  ui-sref-active="header-active">API</a>
+                                        <span></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="header-logo">
+    				<a href="javascript:;" class="logo-image"></a>
+    			</div> -->
+                    <!-- <div class="header-nav">
+    				<ul>
+    					<li>
+    						<a href="javascript:;" >API</a>
+    					</li>
+    					<li>
+    						<a href="javascript:;" >API</a>
+    					</li>
+    					<li>
+    						<a href="javascript:;" >API</a>
+    					</li>
+    					<li>
+    						<a href="javascript:;" >API</a>
+    					</li>
+    				</ul>
+    			</div> -->
+                </div>
+            </nav>
+        </header>
         <div ui-view></div>
     </div>
     <script type="text/javascript" src="lib/requirejs/require.js"></script>

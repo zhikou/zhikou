@@ -1,11 +1,15 @@
 define([
-    "map/controller/testController"
+    "map/controller/api/HomePageController",
+    "map/controller/api/sentimentController",
+    "map/controller/api/sentimentFormController"
 
 
-], function(testController) {
+], function(HomePageController,sentimentController,sentimentFormController) {
 
 	var controllers = {
-		testController:testController
+		HomePageController:HomePageController,
+		sentimentController:sentimentController,
+		sentimentFormController:sentimentFormController
 	}
 	// console.log(testController)
 	return controllers

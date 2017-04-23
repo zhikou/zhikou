@@ -1,5 +1,64 @@
-header {
+@import "../module/function.scss";
+@import "../module/variables.scss";
+// .container {
+  //   @include media("(min-width: 1200px)") {
+		// width: 100%;
+  //   }
+// }
+
+
+
+#header {
 	width: 100%;
-	height: 100px;
-	background-color: #ccc;
+	background-color: $white;
+	border-bottom: 2px solid rgba(0,0,0,0.05);
+	margin-bottom: 20px;
+	.container div{
+		// float: left;
+		overflow:hidden;
+	}
+
+	a {
+		@extend %abtn-style;
+		&.header-active+span {
+			width:100% !important;
+		}
+	}
+	.logo-image {
+		width:109px;
+		height:39px;
+		background: url(../../images/placeholder.png) no-repeat 0 0;
+		background-size: 109px 39px;
+	}
+	.header-logo{
+		margin-top: 20px;
+	}
+	.header-nav {
+		height:100%;
+		color: #ccc;
+		ul{
+			overflow: hidden;
+		}
+		li {
+			list-style: none;
+			float: left;
+			margin-right: 8px;
+			a {
+				padding: 30px 45px;
+			}
+			span {
+				display:block;
+				width:0;
+				height:3px;
+				background-color:$primaryBlue;
+				transition:all .8s;
+			}
+			&:hover {
+				span {
+					width: 100%;
+				}
+				// border-bottom:3px solid #2b6ace;
+			}
+		}
+	}
 }
