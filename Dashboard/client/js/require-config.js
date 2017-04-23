@@ -6,7 +6,7 @@ require.config({
 		"jquery":["jquery/dist/jquery.min"],
 		"angular":["angular/angular.min"],
 		"angular-ui-router":["angular-ui-router/release/angular-ui-router.min"],
-		"bootstrap":["bootstrap/dist/js/bootstrap.min"],
+		"bootstrap":["bootstrap-sass/assets/javascripts/bootstrap.min"],
 		"domReady":["domReady/domReady"],
 		"map": ["../js"]
 	},

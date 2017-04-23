@@ -1,0 +1,12 @@
+@import "./header/header.scss";
+@import "./module/function.scss";
+$primaryColor: #eeffcc;
+body {
+    // background-color: $primaryColor;
+}
+
+.container {
+    @include media("(min-width: 1200px)") {
+		width: 100%;
+    }
+}
