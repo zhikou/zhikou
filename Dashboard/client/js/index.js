@@ -7,7 +7,8 @@ define([
     "bootstrap",
     "map/controller/Controller",
     "angular-ui-router",
-    "angular-material"
+    "angular-material",
+    "anijs"
 ], function(domReady, angular, jquery, bootstrap, Controllers,ngMaterial) {
     var app = angular.module("app", [
         "ui.router","ngMaterial"
@@ -16,31 +17,29 @@ define([
 
     app.config(['$stateProvider', '$urlRouterProvider',function ($stateProvider,
         $urlRouterProvider) {
-    	$urlRouterProvider.when('', '/');
+    	$urlRouterProvider.when('', '/api');
     	// $urlRouterProvider.otherwise('/');
     	$stateProvider
-        .state("HomePage",{
-            url:"/",
+        .state("API",{
+            url:"/api",
+            templateUrl:"templates/api/api.html",
+            controller:Controllers["APIController"]
+        })
+        .state("API.List",{
+            url:"/list",
             templateUrl:"templates/api/apiList.html",
-            controller:Controllers["HomePageController"]
+            controller:Controllers["APIListController"]
         })
-        .state("Sentiment",{
+        .state("API.Sentiment",{
             url:"/sentiment",
-            templateUrl:"templates/api/sentiment.html",
-            controller:Controllers["sentimentController"]
-        })
-        .state("Sentiment.formData",{
-            url:"/",
             templateUrl:"templates/api/sentimentForm.html",
             controller:Controllers["sentimentFormController"]
         })
-    	.state("Anotherstate",{
-    		url:"/another",
-    		templateUrl:"templates/another.html"
-    	})
     }])
-
+    
+        
     require(["domReady!"], function(doc) {
         angular.bootstrap(doc, ['app']);
+        
     });
 })

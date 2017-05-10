@@ -1,7 +1,35 @@
-<form>
-    <div class="form-group">
-        <label for="exampleInputName2" ng-model="message">Message</label>
-        <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+
+<div class="container">
+    <md-input-container class="md-block">
+        <md-icon class="email fa fa-commenting-o" style="font-size:1.9rem;"></md-icon>
+        <input ng-model="message" type="text" placeholder="Message (required)" ng-required="true">
+    </md-input-container>
+    <div class="container" style="border: 2px solid #aad1f9;clear: both;padding: 0;background-color: #E8EAF6;margin-top: 2rem;margin-bottom: 2rem;">
+        <div class="bottom-block" layout-padding>
+            <h4>Examples:</h4>
+            <p>
+                here are some examples...
+            </p>
+        </div>
     </div>
-</form>
-<button type="button" class="btn btn-primary">Submit</button>
+    <div style="overflow: hidden;">
+        <md-button class="md-raised md-primary" ng-disabled="!message" style="float:right;">Analyze</md-button>
+    </div>
+    <div class="container" style="border: 2px solid #aad1f9;clear: both;padding: 0;background-color: rgba(255, 235, 169, 0.25);margin-top: 2rem;margin-bottom: 2rem;">
+        <md-progress-linear md-mode="query" style=""></md-progress-linear>
+        <div class="bottom-block" layout-padding>
+        <h4>Results:</h4>
+            <p>here are some results...</p>
+        </div>
+    </div>
+    <div>
+        <h3>Give us Feedback:</h3>
+        <md-input-container class="md-block">
+            <label>Your Answer</label>
+            <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+    </div>
+    <div style="overflow: hidden;">
+        <md-button class="md-raised md-primary" style="float:right;">Submit</md-button>
+    </div>
+</div>

@@ -12,6 +12,7 @@ require.config({
 		"angular-animate":["angular-animate/angular-animate.min"],
 		"angular-material":["angular-material/angular-material.min"],
 		"angular-messages":["angular-messages/angular-messages.min"],
+		"anijs":["AniJS/dist/anijs-min"],
 		"map": ["../js"]
 	},
 	shim:{
