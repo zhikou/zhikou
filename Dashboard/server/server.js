@@ -1,26 +1,29 @@
-var express = require('express'),
-  app = express(),
-  port = process.env.PORT || 3000,
-  // mongoose = require('mongoose'),
-  bodyParser = require('body-parser'),
-  path = require('path');
-  
-// mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://localhost/Tododb'); 
+'use strict';
 
-const public = path.join(__dirname,"../client/")
-// console.log(public);
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
- 
-//set static resource
-app.use(express.static(public))
+var loopback = require('loopback');
+var boot = require('loopback-boot');
 
-var routes = require('./routes');
-app.use("/", routes)
+var app = module.exports = loopback();
 
+app.start = function() {
+  // start the web server
+  return app.listen(function() {
+    app.emit('started');
+    var baseUrl = app.get('url').replace(/\/$/, '');
+    console.log('Web server listening at: %s', baseUrl);
+    if (app.get('loopback-component-explorer')) {
+      var explorerPath = app.get('loopback-component-explorer').mountPath;
+      console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
+    }
+  });
+};
 
-app.listen(port);
+// Bootstrap the application, configure models, datasources and middleware.
+// Sub-apps like REST API are mounted via boot scripts.
+boot(app, __dirname, function(err) {
+  if (err) throw err;
 
-
-console.log('todo list RESTful API server started on: ' + port);
+  // start the server if `$ node server.js`
+  if (require.main === module)
+    app.start();
+});

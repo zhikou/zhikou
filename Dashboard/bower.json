@@ -1,5 +1,5 @@
 {
-  "name": "zk client",
+  "name": "zk-client",
   "description": "dashboard server node",
   "main": "server.js",
   "authors": [

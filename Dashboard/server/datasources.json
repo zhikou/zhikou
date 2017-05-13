@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "zkdb": {
+    "host": "127.0.0.1",
+    "port": 27017,
+    "url": "",
+    "database": "testAPI",
+    "password": "",
+    "name": "zkdb",
+    "user": "",
+    "connector": "mongodb"
+  }
+}
