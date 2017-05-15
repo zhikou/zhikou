@@ -41,5 +41,9 @@
   "zkApi": {
     "dataSource": "zkdb",
     "public": true
+  },
+  "attachment": {
+    "dataSource": "storage",
+    "public": true
   }
 }

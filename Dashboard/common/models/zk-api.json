@@ -1,19 +1,19 @@
 {
-    "name": "zkApi",
-    "plural": "zkApis",
-    "base": "PersistedModel",
-    "idInjection": true,
-    "options": {
-        "validateUpsert": true
-    },
-    "properties": {
-        "firstname": {
-            "type": "string",
-            "required": true
-        }
-    },
-    "validations": [],
-    "relations": {},
-    "acls": [],
-    "methods": {}
+  "name": "zkApi",
+  "plural": "zkApis",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "firstname": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
 }
