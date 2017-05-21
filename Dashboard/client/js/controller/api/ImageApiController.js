@@ -68,12 +68,16 @@ define([], function() {
             console.info('onCompleteItem', fileItem, response, status, headers);
         };
         uploader.onCompleteAll = function() {
-            console.info('onCompleteAll');
+            $scope.showRet = true;
         };
+        // $scope.showRet = true;
 
         console.info('uploader', uploader);
 
-
+        $scope.hideRet = function () {
+        	alert(1)
+        	$scope.showRet = false;
+        }
 
 
 

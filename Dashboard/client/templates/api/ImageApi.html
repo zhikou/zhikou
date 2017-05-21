@@ -31,7 +31,7 @@
                     </div>
                     <br/>
                 </div>
-                <div class="col-md-9" style="margin-bottom: 40px">
+                <div class="col-md-9 column" style="margin-bottom: 40px">
                     <table class="table">
                         <thead>
                             <tr>
@@ -72,13 +72,16 @@
                                     <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
                                         Cancel
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="hideRet();item.remove();">
                                         Remove
                                     </button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                    <div ng-show="showRet" layout-padding style="width: 100%;background-color: #795548;border-radius: 4px;color: #fff;" class="animated rotateInUpLeft">
+                        <p  style="text-indent: 2rem;line-height: 2rem;">拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此</p>
+                    </div>
                 </div>
             </div>
         </div>
