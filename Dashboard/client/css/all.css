@@ -64,3 +64,45 @@ ul.api-row {
 
 .md-button {
   text-transform: none; }
+
+.api-info {
+  text-indent: 1rem; }
+
+.image-example {
+  border: 2px solid #aad1f9;
+  background-color: #E8EAF6; }
+
+.image-upload {
+  border: 2px solid #aad1f9;
+  background-color: rgba(255, 235, 169, 0.25); }
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+.inputfile + label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  padding: 0.625rem 1.25rem;
+  color: #455A64;
+  border: 2px solid currentColor;
+  text-align: center; }
+
+.inputfile + label:hover {
+  color: #37474F; }
+
+.my-drop-zone {
+  color: #455A64;
+  border: 3px dashed currentColor; }
+
+.nv-file-over {
+  color: #69F0AE; }

@@ -10,6 +10,7 @@ require.config({
         "domReady": ["domReady/domReady"],
         "angular-aria": ["angular-aria/angular-aria"],
         "angular-resource": ["angular-resource/angular-resource.min"],
+        "angular-file-upload": ["angular-file-upload/dist/angular-file-upload.min"],
         "angular-animate": ["angular-animate/angular-animate.min"],
         "angular-material": ["angular-material/angular-material.min"],
         "angular-messages": ["angular-messages/angular-messages.min"],
@@ -25,6 +26,10 @@ require.config({
         "angular-ui-router": {
             deps: ["angular"],
             exports: "angular-ui-router"
+        },
+        "angular-file-upload":{
+            deps:["angular"],
+            exports:"angular-file-upload"
         },
         "bootstrap": {
             deps: ["jquery"],

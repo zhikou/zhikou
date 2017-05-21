@@ -19,6 +19,7 @@
     "hover": "^2.1.1",
     "animate.css": "^3.5.2",
     "AniJS": "anijs#^0.9.3",
-    "angular-resource": "^1.6.4"
+    "angular-resource": "^1.6.4",
+    "angular-file-upload": "^2.5.0"
   }
 }

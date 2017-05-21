@@ -6,6 +6,10 @@ define([], function() {
         $scope.toNatural = function () {
         	$state.go("API.Sentiment",{},{reload:true})
         }
+
+        $scope.toImageApi = function () {
+            $state.go("API.ImageApi",{},{reload:true})
+        }
         
     }
 
