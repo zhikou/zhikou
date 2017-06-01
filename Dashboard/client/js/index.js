@@ -45,6 +45,11 @@ define([
                     templateUrl: "templates/api/ImageApi.html",
                     controller: Controllers["ImageApiController"]
                 })
+                .state("API.AudioApi", {
+                    url: "/audio",
+                    templateUrl: "templates/api/AudioApi.html",
+                    controller: Controllers["AudioApiController"]
+                })
         }])
         .directive('ngThumb', ['$window', function($window) {
             var helper = {

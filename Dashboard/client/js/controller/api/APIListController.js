@@ -11,6 +11,9 @@ define([], function() {
             $state.go("API.ImageApi",{},{reload:true})
         }
         
+        $scope.toAudioApi = function () {
+            $state.go("API.AudioApi",{},{reload:true})
+        }
     }
 
     return controller;

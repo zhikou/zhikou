@@ -1,20 +1,20 @@
 <div class="container">
-    <h3 class="text-center text-primary">图像分析</h3>
+    <h3 class="text-center text-primary">音频分析</h3>
     <div layout="column">
         <p flex="90" style="text-indent: 3rem;margin-top: 2rem;">
-            图像分析：上传一张带有文字的图片，我们将根据图片的信息，分析出图片上所存在的文字，并将结果显示在结果栏里面。
+            音频分析：上传一段语音，我们将根据语音的信息，分析出语音中的内容，并将结果显示在结果栏里面。
         </p>
-        <div flex="10" layout-padding layout="row" layout-align="start center">
+        <!-- <div flex="10" layout-padding layout="row" layout-align="start center">
             <md-button class="md-primary" ng-click="showExample($event)">
                 查看更多
             </md-button>
-        </div>
+        </div> -->
     </div>
     <div layout="column" layout-padding>
         <div flex uploader="uploader" nv-file-drop>
             <div class="row">
                 <div class="col-md-3" >
-                    <h3 style="margin-bottom: 2rem;">请选择您的图片</h3>
+                    <h3 style="margin-bottom: 2rem;">请选择您的语音文件</h3>
                     <div ng-show="uploader.isHTML5">
                         <!-- 3. nv-file-over uploader="link" over-class="className" -->
                         <div class="well my-drop-zone" file-dropzone nv-file-over uploader="uploader">
@@ -49,7 +49,7 @@
                                     <!--auto height-->
                                     <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
                                     <!--auto width-->
-                                    <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, width: 395 }"></div>
+                                    <!-- <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, width: 395 }"></div> -->
                                     <!--fixed width and height -->
                                     <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
                                 </td>
@@ -78,6 +78,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <!-- 'rotateInUpLeft':showRet || 'rotateOutUpRight':!showRet -->
                     <div ng-show="showRet" ng-class="showRet ? 'rotateInUpLeft' : 'rotateOutUpRight'" layout-padding style="width: 100%;background-color: #795548;border-radius: 4px;color: #fff;" class="animated">
                         <p  style="text-indent: 2rem;line-height: 2rem;">拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此拖拽文件至此</p>
                     </div>
