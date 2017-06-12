@@ -1,0 +1,14 @@
+{
+    "apps": [{
+        "name": "zk",
+        "script": "./server/server.js",
+        "watch": ["server", "common"],
+        "ignore_watch" : ["node_modules", "logs", "upload_files", "server/temp_files", "client"],
+        "env": {
+            "NODE_ENV": "development",
+        },
+        "env_staging" : {
+            "NODE_ENV" : "staging"
+        }
+    }]
+}

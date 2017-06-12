@@ -1,0 +1,1278 @@
+{
+    "dialog": {
+        "version": "1.0",
+        "dialogs": [{
+            "name": "随访",
+            "type": "PROCEDURE",
+            "nodes": [{
+                "name": "0_获得用户基本信息",
+                "type": "NODE",
+                "script": "getUserProfile"
+            }, {
+                "name": "1_开场白",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["/::)跟您聊一下健康，您看好吗？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您好，{{{用户名称}}}{{{用户称谓}}}，您是我们的重要客户，我们想跟您聊一下您最近的身体情况，您方便吗？/::)", "您好，{{{用户名称}}}{{{用户称谓}}}，我们想了解一下您最近的身体情况，您看好吗？/::)", "您好，{{{用户名称}}}{{{用户称谓}}}，慢性病需要经常关注身体的各项指标，我们想跟您聊一下您最近的身体情况，您看好吗？/::)", "定期体检和自我检测身体各项指标对我们了解自身情况、自我保健都很重要，我们想花您几分钟时间跟您聊一下您最近的身体情况，您看好吗？/::)", "您好，我们想花您几分钟时间跟您聊一下您最近的身体情况，您看好吗？/::)"]
+                }
+            }, {
+                "name": "2_无言结束",
+                "type": "NODE"
+            }, {
+                "name": "2_费会员结束",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您尚未成为我们的会员，系统没有您的信息。请联系我们的客服人员寻求帮助。"]
+                }
+            }, {
+                "name": "2_结束语",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["好的。根据您的健康状况，我们可为您形成健康数据报告并提供保健建议。这次先不打搅您了，祝您身体健康！", "嗯，好的！/微笑", "没问题，祝您身体健康！/微笑", "好的。祝您身体健康，开开心心每一天！"]
+                }
+            }, {
+                "name": "3_体重变化",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您体重多少公斤？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["先了解一下您的体重情况。最近的体重有变化吗？", "体重与血压、血脂等都有一定关系。您最近的体重有变化吗？", "您最近的体重有变化吗？", "保持合适的体重很重要。您最近的体重有变化吗？", "合理运动对控制体重有帮助，您最近的体重有变化吗？"]
+                }
+            }, {
+                "name": "4_采集体重",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["我想知道您的体重值？", "我需要知道您的体重，以便对您健康给出合适的分析，您多少公斤？", "您体重多少公斤？", "好啦，我们还回到原来的问题，您体重多少公斤？", "我还是不知道您体重值。您多少公斤？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["哦，现在体重多少了？（请给出公斤值）", "您体重多少公斤？", "嗯，您多少公斤？"]
+                }
+            }, {
+                "name": "4_回写体重",
+                "type": "NODE",
+                "script": "updateValues"
+            }, {
+                "name": "5_高血压",
+                "type": "NODE"
+            }, {
+                "name": "6_测血压",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您忘了回答我的问题了，我还等着呢/微笑。您最近有测血压吗？", "您忘了回答我的问题了，我还等着呢/撇嘴。", "您忘了回答我的问题了，我还等着呢。"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您最近有测血压了吗？", "您最近有测血压吗？", "血压最近有测吗？"]
+                }
+            }, {
+                "name": "7_采集高压",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["咱们继续，您高压多少？", "前面咱们问到血压。您高压多少？", "好啦/微笑，我们还回到原来的问题，您血压高压多少？", "我还是不知道您的血压情况。您高压多少？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["好棒哦/强，良好的监测习惯会减少您病情恶化的风险！您最近一次测量的高压值是多少？", "/强好棒哦，良好的监测习惯会减少您病情恶化的风险！您测量的高压是多少", "/强好棒哦，良好的监测习惯会减少您病情恶化的风险！您收缩压是多少，也就是我们平时说的高压。"]
+                }
+            }, {
+                "name": "7_回写高压",
+                "type": "NODE",
+                "script": "updateValues"
+            }, {
+                "name": "8_采集低压",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您还没回答我前面的问题/微笑，您低压多少？", "您低压多少？", "好啦/微笑，我们还回到原来的问题，您低压多少？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您最近一次测量的低压值是多少？", "您低压多少", "您舒张压是多少，也就是我们平时说的低压。"]
+                }
+            }, {
+                "name": "8_回写低压",
+                "type": "NODE",
+                "script": "updateValues"
+            }, {
+                "name": "9_测血压重要性",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["测血压这么重要的事情，咱可得重视呀，要坚持测，也要做好记录哦", "经常测测血压很重要。有人会专门用个本子记录每次测量的血压，这确实是个好习惯。", "定期测量血压，并做好记录。去医院时，可以告诉大夫。", "如果血压长期在不正常的范围，对身体是有害的，所以监控自身血压变化对我们很重要。"]
+                }
+            }, {
+                "name": "10_高血压合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["血压达标，哈哈，真替您感到高兴，继续坚持哈！"]
+                }
+            }, {
+                "name": "10_高血压不合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["血压暂时没有达标，不要灰心，注意按时吃药，饮食保持清淡，继续监测，血压一定会好起来的，加油哦！/拳头/拳头/拳头", "血压没有达标，最近多测测，如果还有问题，就需要请教一下医生了", "血压超过了临界值，继续监测，注意按时吃药，饮食保持清淡，血压一定会好起来的，加油哦/拳头/拳头/拳头"]
+                }
+            }, {
+                "name": "11_糖尿病",
+                "type": "NODE"
+            }, {
+                "name": "12_测血糖",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您忘了回答我的问题了，我还等着呢。您最近有测血糖吗？", "您忘了回答我的问题了，我还等着呢。", "您忘了回答我的问题了，我还等着呢。"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["最近您测血糖了吗？", "好。我们看看您的血糖情况吧。最近您测血糖了吗？", "血糖也是需要经常测量的重要指标，最近您有测过吗？"]
+                }
+            }, {
+                "name": "13_采集空腹血糖",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["咱们继续，您空腹血糖是多少？", "前面咱们问到空腹血糖。您空腹血糖多少？", "好啦，我们还回到原来的问题，您空腹血糖是多少？", "我还是不知道您的空腹血糖情况。您空腹血糖多少？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["看到您有良好的监测习惯，真为您高兴/憨笑！怎么样，空腹血糖有测吗？最近一次的测量值是多少？", "看到您有良好的监测习惯，真为您高兴/憨笑！您空腹血糖是多少？", "空腹血糖多少？"]
+                }
+            }, {
+                "name": "13_回写空腹血糖",
+                "type": "NODE",
+                "script": "updateValues"
+            }, {
+                "name": "14_血糖提醒",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["血糖是对您来说是很重要的指标，要测得勤一点哦"]
+                }
+            }, {
+                "name": "15_空腹血糖提醒",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["俗话说：好记性不如烂笔头。下次别忘了记录哦"]
+                }
+            }, {
+                "name": "16_采集餐后血糖",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["咱们继续，您餐后血糖是多少？", "前面咱们问到餐后血糖。您餐后血糖多少？", "好啦，我们还回到原来的问题，您餐后血糖是多少？", "我还是不知道您的餐后血糖情况/皱眉。您餐后血糖多少？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["最近一次的餐后2小时血糖是多少？", "餐后2小时血糖是多少？"]
+                }
+            }, {
+                "name": "16_回写餐后血糖",
+                "type": "NODE",
+                "script": "updateValues"
+            }, {
+                "name": "17_餐后血糖鼓励",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["好的，血糖要坚持测，并做好记录，一次血糖说明不了太大的问题，下次您找医生调血糖，要把连续几天的结果都拿给医生看，这样才有参考价值哦/爱心"]
+                }
+            }, {
+                "name": "18_餐后血糖提醒",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["咱要养成记录血糖的习惯，这样您找大夫调血糖的话，就方便多了"]
+                }
+            }, {
+                "name": "19_糖化血红蛋白",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您忘了回答我的问题了，我还等着呢/皱眉。您有复查糖化血红蛋白吗？", "您忘了回答我的问题了，我还等着呢/皱眉。", "您忘了回答我的问题了，我还等着呢/皱眉。"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["糖化血红蛋白有复查吗？"]
+                }
+            }, {
+                "name": "20_采集糖化血红蛋白",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["咱们继续，您糖化血红蛋白是多少？", "前面咱们问到糖化血红蛋白。您糖化血红蛋白是多少？", "好啦，我们还回到原来的问题，您糖化血红蛋白是多少？", "我还是不知道您的糖化血红蛋白情况。您糖化血红蛋白多少？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["糖化血红蛋白数值是多少？"]
+                }
+            }, {
+                "name": "20_回写糖化血红蛋白",
+                "type": "NODE",
+                "script": "updateValues"
+            }, {
+                "name": "21_糖尿病合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["这段时间您的血糖整体情况还不错，要继续坚持管住嘴、迈开腿哦/得意"]
+                }
+            }, {
+                "name": "21_糖尿病不合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["这段时间您的血糖整体情况偏高，建议您在饮食上面适当调整，如果饮食控制的很好，建议您找大夫咨询一下，看是否需要调整一下治疗方案。/爱心"]
+                }
+            }, {
+                "name": "22_糖化血红蛋白提醒",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["糖化血红蛋白一般2~3个月查一次，可以更准确地反映您一段时间的血糖情况"]
+                }
+            }, {
+                "name": "23_高血脂",
+                "type": "NODE"
+            }, {
+                "name": "24_测血脂",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您忘了回答我的问题了，我还等着呢/皱眉。最近有复查血脂吗？", "您忘了回答我的问题了，我还等着呢/皱眉。", "您忘了回答我的问题了，我还等着呢/皱眉。"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["最近有没有复查血脂？"]
+                }
+            }, {
+                "name": "25_采集总胆固醇",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["咱们继续，您总胆固醇是多少？", "前面咱们问到总胆固醇。您总胆固醇是多少？", "好啦，我们还回到原来的问题，您总胆固醇是多少？", "我还是不知道您的总胆固醇情况。您总胆固醇多少？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["太好了，您的习惯很好，为您点赞/强！您最近测的总胆固醇是多少？"]
+                }
+            }, {
+                "name": "25_回写总胆固醇",
+                "type": "NODE",
+                "script": "updateValues"
+            }, {
+                "name": "26_总胆固醇合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["嗯，不错嘛。总胆固醇合格！"]
+                }
+            }, {
+                "name": "26_总胆固醇不合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["这个数对您来说是偏高的。请注意饮食，少吃油腻，多运动。"]
+                }
+            }, {
+                "name": "27_血脂复查建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["如果上次检查，您的血脂不合格，建议您三个月查一次；如果上次检查已经合格了，每隔半年到一年最好再查一次，不要忘记呦/爱心"]
+                }
+            }, {
+                "name": "28_采集甘油三酯",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["咱们继续，您甘油三酯是多少？", "前面咱们问到甘油三酯。您甘油三酯是多少？", "好啦，我们还回到原来的问题，您甘油三酯是多少？", "我还是不知道您的甘油三酯情况。您甘油三酯多少？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["甘油三酯是多少？"]
+                }
+            }, {
+                "name": "28_回写甘油三酯",
+                "type": "NODE",
+                "script": "updateValues"
+            }, {
+                "name": "29_甘油三酯合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["甘油三酯合格，赞一个！"]
+                }
+            }, {
+                "name": "29_甘油三酯不合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["甘油三酯有点偏高啦，首先还是应该在饮食和运动上多下功夫", "甘油三酯有点偏高啦，注意少吃油腻，适量运动。"]
+                }
+            }, {
+                "name": "30_采集低密度脂蛋白",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["现在您能告诉我您的低密度脂蛋白是多少了吗，您低密度脂蛋白是多少？", "前面咱们问到低密度脂蛋白。您低密度脂蛋白是多少？", "好啦，我们还回到原来的问题，您低密度脂蛋白是多少？", "我还是不知道您的低密度脂蛋白情况。低密度脂蛋白是多少？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["低密度脂蛋白胆固醇也就是化验单上那个LDL是多少？"]
+                }
+            }, {
+                "name": "30_回写低密度脂蛋白",
+                "type": "NODE",
+                "script": "updateValues"
+            }, {
+                "name": "31_低密度脂蛋白合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["低密度脂蛋白胆固醇合格啦，好开心！"]
+                }
+            }, {
+                "name": "31_低密度脂蛋白不合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["LDL有点高了，要小心。饮食和运动两手抓，怎么强调都不为过。"]
+                }
+            }, {
+                "name": "32_采集高密度脂蛋白",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["现在您能告诉我您的高密度脂蛋白是多少了吗，您高密度脂蛋白是多少？", "前面咱们问到高密度脂蛋白。您高密度脂蛋白是多少？", "好啦，我们还回到原来的问题，您高密度脂蛋白是多少？", "我还是不知道您的低密度脂蛋白情况。高密度脂蛋白是多少？"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["高密度脂蛋白胆固醇，也就是化验单上那个HDL是多少？"]
+                }
+            }, {
+                "name": "32_回写高密度脂蛋白",
+                "type": "NODE",
+                "script": "updateValues"
+            }, {
+                "name": "33_高密度脂蛋白合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["高密度脂蛋白胆固醇合格啦，好开心。", "高密度脂蛋白胆固醇达标了，这种胆固醇俗称“好胆固醇”，高了好，低了反而不好。"]
+                }
+            }, {
+                "name": "33_高密度脂蛋白不合格建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["HDL偏低，不好。这家伙是“好胆固醇”，对身体有保护作用，低了反而不好。", "高密度脂蛋白胆固醇没达标。这种胆固醇俗称“好胆固醇”，能有效搬走血脂。高了好，低了反而不好，容易造成血脂沉积在血管上。"]
+                }
+            }, {
+                "name": "34_血脂建议",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["以上指标如果您都已经合格，那么恭喜您/微笑，继续保持，以后可以每半年到一年测一次就可以；如果有不合格的，也不要灰心丧气哦，血脂控制可是个持久战，我们要通过饮食和运动以及必要的药物治疗来战胜它，过三个月您再测一次，还是不合格的话，建议您该找大夫调整药物啦"]
+                }
+            }, {
+                "name": "35_用药情况开始点",
+                "type": "NODE"
+            }, {
+                "name": "36_用药情况开场白",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["监测的情况我们已经了解了，再来看看您的用药情况吧。您慢性病的药都在坚持吃吗？\n下面我们依次看一下您目前需要长期吃的药，逐一确认一下:"]
+                }
+            }, {
+                "name": "DIALOG_慢病用药具体问题",
+                "type": "SUBFLOW"
+            }, {
+                "name": "40_结束语",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["好了，我想问的就这么多了，感谢您，送您一个大玫瑰/:rose~ 祝您身体健康！（另外，您可以点击<a href=\"http://www.pfizer.com\">此链接</a>，查看历史健康数据。）", "今天跟您聊得开心，感谢您的参与，送您一个大玫瑰/:rose~。希望经常跟您聊一聊，及时掌握您的健康状况，以便我们有机会提供一些帮助。 祝您身体健康！（另外，您可以点击<a href=\"http://www.pfizer.com\">此链接</a>，查看历史健康数据。）", "高血压、高血脂、糖尿病等慢性病需要自我监控和管理，您今后还要继续坚持测量，对自己的健康做到心中有数。祝您身体健康！/:rose （另外，您可以点击<a href=\"http://www.pfizer.com\">此链接</a>，查看历史健康数据。）"]
+                }
+            }],
+            "links": [{
+                    "source_node": "0_获得用户基本信息",
+                    "destination_node": "1_开场白",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"应该随访\") == true && c.getContextValue(\"是会员\") == true"]
+                    }
+                }, {
+                    "source_node": "0_获得用户基本信息",
+                    "destination_node": "2_费会员结束",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"是会员\") == false"]
+                    }
+                }, {
+                    "source_node": "0_获得用户基本信息",
+                    "destination_node": "2_无言结束",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"应该随访\") == false"]
+                    }
+                }, {
+                    "source_node": "1_开场白",
+                    "destination_node": "2_结束语",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "1_开场白",
+                    "destination_node": "3_体重变化",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"肯定\")"]
+                    }
+                }, {
+                    "source_node": "3_体重变化",
+                    "destination_node": "4_采集体重",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"肯定\")"]
+                    }
+                }, {
+                    "source_node": "3_体重变化",
+                    "destination_node": "4_回写体重",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "用户体重",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "用户体重"
+                    }]
+                }, {
+                    "source_node": "4_采集体重",
+                    "destination_node": "4_回写体重",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "用户体重",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "用户体重"
+                    }]
+                }, {
+                    "source_node": "4_采集体重",
+                    "destination_node": "5_高血压",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "4_回写体重",
+                    "destination_node": "5_高血压",
+                    "wait_response": false
+                }, {
+                    "source_node": "3_体重变化",
+                    "destination_node": "5_高血压",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "5_高血压",
+                    "destination_node": "6_测血压",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"高血压症\")==true"]
+                    }
+                }, {
+                    "source_node": "5_高血压",
+                    "destination_node": "11_糖尿病",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"高血压症\")==false"]
+                    }
+                }, {
+                    "source_node": "6_测血压",
+                    "destination_node": "7_采集高压",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"肯定\")"]
+                    }
+                }, {
+                    "source_node": "7_采集高压",
+                    "destination_node": "7_回写高压",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "高压",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "高压"
+                    }]
+                }, {
+                    "source_node": "7_回写高压",
+                    "destination_node": "8_采集低压",
+                    "wait_response": false
+                }, {
+                    "source_node": "8_采集低压",
+                    "destination_node": "8_回写低压",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "低压",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "低压"
+                    }]
+                }, {
+                    "source_node": "8_回写低压",
+                    "destination_node": "10_高血压不合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"高压\")>c.getContextValue(\"收缩压目标值\") || c.getContextValue(\"低压\")>c.getContextValue(\"舒张压目标值\") "]
+                    }
+                }, {
+                    "source_node": "8_回写低压",
+                    "destination_node": "10_高血压合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"高压\")<=c.getContextValue(\"收缩压目标值\") && c.getContextValue(\"低压\")<=c.getContextValue(\"舒张压目标值\") "]
+                    }
+                }, {
+                    "source_node": "7_采集高压",
+                    "destination_node": "9_测血压重要性",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "8_采集低压",
+                    "destination_node": "9_测血压重要性",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "6_测血压",
+                    "destination_node": "9_测血压重要性",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "9_测血压重要性",
+                    "destination_node": "11_糖尿病",
+                    "wait_response": false
+                }, {
+                    "source_node": "10_高血压合格建议",
+                    "destination_node": "11_糖尿病",
+                    "wait_response": false
+                }, {
+                    "source_node": "10_高血压不合格建议",
+                    "destination_node": "11_糖尿病",
+                    "wait_response": false
+                }, {
+                    "source_node": "11_糖尿病",
+                    "destination_node": "12_测血糖",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"糖尿病\")==true"]
+                    }
+                }, {
+                    "source_node": "11_糖尿病",
+                    "destination_node": "23_高血脂",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"糖尿病\")==false"]
+                    }
+                },
+
+                {
+                    "source_node": "12_测血糖",
+                    "destination_node": "13_采集空腹血糖",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"肯定\")"]
+                    }
+                }, {
+                    "source_node": "12_测血糖",
+                    "destination_node": "14_血糖提醒",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "14_血糖提醒",
+                    "destination_node": "23_高血脂",
+                    "wait_response": false
+                }, {
+                    "source_node": "13_采集空腹血糖",
+                    "destination_node": "13_回写空腹血糖",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "空腹血糖",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "空腹血糖"
+                    }]
+                }, {
+                    "source_node": "13_采集空腹血糖",
+                    "destination_node": "15_空腹血糖提醒",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "13_回写空腹血糖",
+                    "destination_node": "16_采集餐后血糖",
+                    "wait_response": false
+                }, {
+                    "source_node": "15_空腹血糖提醒",
+                    "destination_node": "16_采集餐后血糖",
+                    "wait_response": false
+                }, {
+                    "source_node": "16_采集餐后血糖",
+                    "destination_node": "16_回写餐后血糖",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "餐后血糖",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "餐后血糖"
+                    }]
+                }, {
+                    "source_node": "16_采集餐后血糖",
+                    "destination_node": "18_餐后血糖提醒",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "16_回写餐后血糖",
+                    "destination_node": "17_餐后血糖鼓励",
+                    "wait_response": false
+                }, {
+                    "source_node": "17_餐后血糖鼓励",
+                    "destination_node": "19_糖化血红蛋白",
+                    "wait_response": false
+                }, {
+                    "source_node": "18_餐后血糖提醒",
+                    "destination_node": "19_糖化血红蛋白",
+                    "wait_response": false
+                }, {
+                    "source_node": "19_糖化血红蛋白",
+                    "destination_node": "20_采集糖化血红蛋白",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"肯定\")"]
+                    }
+                }, {
+                    "source_node": "20_采集糖化血红蛋白",
+                    "destination_node": "20_回写糖化血红蛋白",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "糖化血红蛋白",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "糖化血红蛋白"
+                    }]
+                }, {
+                    "source_node": "20_采集糖化血红蛋白",
+                    "destination_node": "22_糖化血红蛋白提醒",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "19_糖化血红蛋白",
+                    "destination_node": "22_糖化血红蛋白提醒",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "20_回写糖化血红蛋白",
+                    "destination_node": "21_糖尿病合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"糖化血红蛋白\")<c.getContextValue(\"糖化血红蛋白目标值\")"]
+                    }
+                }, {
+                    "source_node": "20_回写糖化血红蛋白",
+                    "destination_node": "21_糖尿病不合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"糖化血红蛋白\")>=c.getContextValue(\"糖化血红蛋白目标值\")"]
+                    }
+                }, {
+                    "source_node": "22_糖化血红蛋白提醒",
+                    "destination_node": "23_高血脂",
+                    "wait_response": false
+                }, {
+                    "source_node": "21_糖尿病合格建议",
+                    "destination_node": "23_高血脂",
+                    "wait_response": false
+                }, {
+                    "source_node": "21_糖尿病不合格建议",
+                    "destination_node": "23_高血脂",
+                    "wait_response": false
+                }, {
+                    "source_node": "23_高血脂",
+                    "destination_node": "24_测血脂",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"高血脂症\")==true"]
+                    }
+                }, {
+                    "source_node": "23_高血脂",
+                    "destination_node": "35_用药情况开始点",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"高血脂症\")==false"]
+                    }
+                }, {
+                    "source_node": "24_测血脂",
+                    "destination_node": "25_采集总胆固醇",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"肯定\")"]
+                    }
+                }, {
+                    "source_node": "24_测血脂",
+                    "destination_node": "27_血脂复查建议",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "27_血脂复查建议",
+                    "destination_node": "35_用药情况开始点",
+                    "wait_response": false
+                }, {
+                    "source_node": "25_采集总胆固醇",
+                    "destination_node": "25_回写总胆固醇",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "总胆固醇",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "总胆固醇"
+                    }]
+                }, {
+                    "source_node": "25_采集总胆固醇",
+                    "destination_node": "28_采集甘油三酯",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "25_回写总胆固醇",
+                    "destination_node": "26_总胆固醇合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"总胆固醇\")<c.getContextValue(\"总胆固醇目标值\")"]
+                    }
+                }, {
+                    "source_node": "25_回写总胆固醇",
+                    "destination_node": "26_总胆固醇不合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"总胆固醇\")>=c.getContextValue(\"总胆固醇目标值\")"]
+                    }
+                }, {
+                    "source_node": "26_总胆固醇不合格建议",
+                    "destination_node": "28_采集甘油三酯",
+                    "wait_response": false
+                }, {
+                    "source_node": "26_总胆固醇合格建议",
+                    "destination_node": "28_采集甘油三酯",
+                    "wait_response": false
+                }, {
+                    "source_node": "28_采集甘油三酯",
+                    "destination_node": "28_回写甘油三酯",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "甘油三酯",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "甘油三酯"
+                    }]
+                }, {
+                    "source_node": "28_采集甘油三酯",
+                    "destination_node": "30_采集低密度脂蛋白",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "28_回写甘油三酯",
+                    "destination_node": "29_甘油三酯合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"甘油三酯\")<c.getContextValue(\"甘油三酯目标值\")"]
+                    }
+                }, {
+                    "source_node": "28_回写甘油三酯",
+                    "destination_node": "29_甘油三酯不合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"甘油三酯\")>=c.getContextValue(\"甘油三酯目标值\")"]
+                    }
+                }, {
+                    "source_node": "29_甘油三酯合格建议",
+                    "destination_node": "30_采集低密度脂蛋白",
+                    "wait_response": false
+                }, {
+                    "source_node": "29_甘油三酯不合格建议",
+                    "destination_node": "30_采集低密度脂蛋白",
+                    "wait_response": false
+                }, {
+                    "source_node": "30_采集低密度脂蛋白",
+                    "destination_node": "30_回写低密度脂蛋白",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "低密度脂蛋白",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "低密度脂蛋白"
+                    }]
+                }, {
+                    "source_node": "30_回写低密度脂蛋白",
+                    "destination_node": "31_低密度脂蛋白合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"低密度脂蛋白\")<c.getContextValue(\"低密度脂蛋白目标值\")"]
+                    }
+                }, {
+                    "source_node": "30_回写低密度脂蛋白",
+                    "destination_node": "31_低密度脂蛋白不合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"低密度脂蛋白\")>=c.getContextValue(\"低密度脂蛋白目标值\")"]
+                    }
+                }, {
+                    "source_node": "31_低密度脂蛋白合格建议",
+                    "destination_node": "32_采集高密度脂蛋白",
+                    "wait_response": false
+                }, {
+                    "source_node": "31_低密度脂蛋白不合格建议",
+                    "destination_node": "32_采集高密度脂蛋白",
+                    "wait_response": false
+                }, {
+                    "source_node": "30_采集低密度脂蛋白",
+                    "destination_node": "32_采集高密度脂蛋白",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "32_采集高密度脂蛋白",
+                    "destination_node": "32_回写高密度脂蛋白",
+                    "wait_response": true,
+                    "set": [{
+                        "context_name": "高密度脂蛋白",
+                        "source_type": "ENTITY_VALUE",
+                        "source_name": "SYS_DIGITAL"
+                    }, {
+                        "context_name": "回写什么",
+                        "source_type": "CONST_VALUE",
+                        "value": "高密度脂蛋白"
+                    }]
+                }, {
+                    "source_node": "32_回写高密度脂蛋白",
+                    "destination_node": "33_高密度脂蛋白合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"高密度脂蛋白\")>c.getContextValue(\"高密度脂蛋白目标值\")"]
+                    }
+                }, {
+                    "source_node": "32_回写高密度脂蛋白",
+                    "destination_node": "33_高密度脂蛋白不合格建议",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"高密度脂蛋白\")<=c.getContextValue(\"高密度脂蛋白目标值\")"]
+                    }
+                }, {
+                    "source_node": "33_高密度脂蛋白合格建议",
+                    "destination_node": "34_血脂建议",
+                    "wait_response": false
+                }, {
+                    "source_node": "33_高密度脂蛋白不合格建议",
+                    "destination_node": "34_血脂建议",
+                    "wait_response": false
+                }, {
+                    "source_node": "32_采集高密度脂蛋白",
+                    "destination_node": "34_血脂建议",
+                    "wait_response": true,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.containIntent(\"否定\")"]
+                    }
+                }, {
+                    "source_node": "34_血脂建议",
+                    "destination_node": "35_用药情况开始点",
+                    "wait_response": false
+                }, {
+                    "source_node": "35_用药情况开始点",
+                    "destination_node": "36_用药情况开场白",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"药为空\")==false"]
+                    }
+                }, {
+                    "source_node": "35_用药情况开始点",
+                    "destination_node": "40_结束语",
+                    "wait_response": false,
+                    "condition": {
+                        "type": "EXPRESSION",
+                        "expressions": ["c.getContextValue(\"药为空\")==true"]
+                    }
+                }, {
+                    "source_node": "36_用药情况开场白",
+                    "destination_node": "37_药名",
+                    "destination_dialog": "DIALOG_慢病用药具体问题",
+                    "wait_response": false,
+                    "loop": {
+                        "variable_context": "慢病用药列表",
+                        "variable_name": "当前药名",
+                        "maximum_times": 0
+                    }
+                }, {
+                    "source_node": "39_回写当前药",
+                    "source_dialog": "DIALOG_慢病用药具体问题",
+                    "destination_node": "40_结束语",
+                    "wait_response": false
+                }
+            ]
+        }, {
+            "name": "DIALOG_慢病用药具体问题",
+            "type": "PROCEDURE",
+            "nodes": [{
+                "name": "37_药名",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["对{{{当前药名}}}的这个问题，我们需要您回复相应的数字。"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["药品名称：{{{当前药名}}}\n1）基本每天都吃；\n2）不是每天都吃，有间断。\n（请回复相应数字）"]
+                }
+            }, {
+                "name": "38_未坚持吃药",
+                "type": "NODE",
+                "prompt": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["这个问题，我们需要您回复相应的数字，以便我们了解未坚持吃药的原因。"]
+                },
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您没有坚持吃药的原因是？\n3）经常忘；\n4）感觉不舒服就吃，没感觉就不吃；\n5）这个药本身吃了让我不舒服，有不良反应；\n6）伤肝肾。\n（请回复相应数字）"]
+                }
+            }, {
+                "name": "38_回答3",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["我们可以每天提醒您吃药。"]
+                }
+            }, {
+                "name": "38_回答4",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["慢性病的药就得长期坚持吃，可不能跟着感觉走呀。"]
+                }
+            }, {
+                "name": "38_回答5",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您在用药时出现了不良反应，请咨询医生，看看是不是需要减量或停药。"]
+                }
+            }, {
+                "name": "39_回写当前药",
+                "type": "NODE",
+                "script": "updateValues"
+            }],
+            "links": [{
+                "source_node": "37_药名",
+                "destination_node": "39_回写当前药",
+                "wait_response": true,
+                "set": [{
+                    "context_name": "当前药服用状况",
+                    "source_type": "ENTITY_VALUE",
+                    "source_name": "SYS_DIGITAL"
+                }, {
+                    "context_name": "回写什么",
+                    "source_type": "CONST_VALUE",
+                    "value": "当前药"
+                }],
+                "condition": {
+                    "type": "EXPRESSION",
+                    "expressions": ["c.getContextValue(\"当前药服用状况\")==1"]
+                }
+            }, {
+                "source_node": "37_药名",
+                "destination_node": "38_未坚持吃药",
+                "wait_response": true,
+                "set": [{
+                    "context_name": "当前药服用状况",
+                    "source_type": "ENTITY_VALUE",
+                    "source_name": "SYS_DIGITAL"
+                }],
+                "condition": {
+                    "type": "EXPRESSION",
+                    "expressions": ["c.getContextValue(\"当前药服用状况\")==2"]
+                }
+            }, {
+                "source_node": "38_未坚持吃药",
+                "destination_node": "38_回答3",
+                "wait_response": true,
+                "set": [{
+                    "context_name": "未坚持吃药原因",
+                    "source_type": "ENTITY_VALUE",
+                    "source_name": "SYS_DIGITAL"
+                }],
+                "condition": {
+                    "type": "EXPRESSION",
+                    "expressions": ["c.getContextValue(\"未坚持吃药原因\")==3"]
+                }
+            }, {
+                "source_node": "38_回答3",
+                "destination_node": "39_回写当前药",
+                "wait_response": false,
+                "set": [{
+                    "context_name": "回写什么",
+                    "source_type": "CONST_VALUE",
+                    "value": "当前药"
+                }]
+            }, {
+                "source_node": "38_未坚持吃药",
+                "destination_node": "38_回答4",
+                "wait_response": true,
+                "set": [{
+                    "context_name": "未坚持吃药原因",
+                    "source_type": "ENTITY_VALUE",
+                    "source_name": "SYS_DIGITAL"
+                }],
+                "condition": {
+                    "type": "EXPRESSION",
+                    "expressions": ["c.getContextValue(\"未坚持吃药原因\")==4"]
+                }
+            }, {
+                "source_node": "38_回答4",
+                "destination_node": "39_回写当前药",
+                "wait_response": false,
+                "set": [{
+                    "context_name": "回写什么",
+                    "source_type": "CONST_VALUE",
+                    "value": "当前药"
+                }]
+            }, {
+                "source_node": "38_未坚持吃药",
+                "destination_node": "38_回答5",
+                "wait_response": true,
+                "set": [{
+                    "context_name": "未坚持吃药原因",
+                    "source_type": "ENTITY_VALUE",
+                    "source_name": "SYS_DIGITAL"
+                }],
+                "condition": {
+                    "type": "EXPRESSION",
+                    "expressions": ["c.getContextValue(\"未坚持吃药原因\")==5"]
+                }
+            }, {
+                "source_node": "38_回答5",
+                "destination_node": "39_回写当前药",
+                "wait_response": false,
+                "set": [{
+                    "context_name": "回写什么",
+                    "source_type": "CONST_VALUE",
+                    "value": "当前药"
+                }]
+            }, {
+                "source_node": "38_未坚持吃药",
+                "destination_node": "39_回写当前药",
+                "wait_response": true,
+                "set": [{
+                    "context_name": "未坚持吃药原因",
+                    "source_type": "ENTITY_VALUE",
+                    "source_name": "SYS_DIGITAL"
+                }, {
+                    "context_name": "回写什么",
+                    "source_type": "CONST_VALUE",
+                    "value": "当前药"
+                }],
+                "condition": {
+                    "type": "EXPRESSION",
+                    "expressions": ["c.getContextValue(\"未坚持吃药原因\")==6"]
+                }
+            }]
+        }, {
+            "name": "问专家",
+            "type": "PROCEDURE",
+            "nodes": [{
+                "name": "0_获得用户基本信息1",
+                "type": "NODE",
+                "script": "getUserProfile"
+            }, {
+                "name": "1_开场白1",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您好/微笑，{{{用户名称}}}{{{用户称谓}}}，我是{{{药店名称}}}医师来宝儿，我可以解答一些慢性病相关的常见问题。不过我的知识还在积累中，万一有回答不了的，请您见谅！请问您有什么问题吗？"]
+                }
+            }],
+            "links": [{
+                "source_node": "0_获得用户基本信息1",
+                "destination_node": "1_开场白1",
+                "wait_response": false
+            }]
+        }, {
+            "name": "专家科室",
+            "type": "PROCEDURE",
+            "nodes": [{
+                "name": "QA_专家科室",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您好，感谢您的提问，这里，您可以提问关于高血压、高血脂、糖尿病等疾病的相关问题.我们会根据医生工作指南和最新文献回答您的问题，我们只提供疾病的咨询，不能帮助诊断和治疗疾病。另外，有些问题超出我们的知识范围，还请您见谅。"]
+                }
+            }],
+            "links": []
+        }, {
+            "name": "赞赏或感谢",
+            "type": "PROCEDURE",
+            "nodes": [{
+                "name": "QA_赞赏或感谢",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["您的认可我很开心~"]
+                }
+            }],
+            "links": []
+        }, {
+            "name": "想问问题",
+            "type": "PROCEDURE",
+            "nodes": [{
+                "name": "QA_想问问题",
+                "type": "NODE",
+                "response": {
+                    "type": "TEMPLATE_RESPONSE",
+                    "text": ["好的，您请讲哦~"]
+                }
+            }],
+            "links": []
+        }],
+        "dialog_relations": [{
+            "dialog_name": "随访",
+            "type": "PROCEDURE",
+            "children": [{
+                "dialog_name": "想问问题",
+                "type": "PROCEDURE"
+            }, {
+                "dialog_name": "赞赏或感谢",
+                "type": "PROCEDURE"
+            }, {
+                "dialog_name": "专家科室",
+                "type": "PROCEDURE"
+            }]
+        }, {
+            "dialog_name": "想问问题",
+            "type": "PROCEDURE"
+        }, {
+            "dialog_name": "赞赏或感谢",
+            "type": "PROCEDURE"
+        }, {
+            "dialog_name": "专家科室",
+            "type": "PROCEDURE"
+        }]
+    }
+}

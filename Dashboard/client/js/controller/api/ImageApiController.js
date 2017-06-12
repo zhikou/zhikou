@@ -25,7 +25,8 @@ define([], function() {
         }
 
         var uploader = $scope.uploader = new FileUploader({
-            url: 'api/attachments/img/upload',
+            url: 'api/imageApi/upload',
+            alias:"ocr_file",
             queueLimit:1
         });
 
@@ -57,6 +58,7 @@ define([], function() {
         };
         uploader.onSuccessItem = function(fileItem, response, status, headers) {
             console.info('onSuccessItem', fileItem, response, status, headers);
+            $scope.response = response;
         };
         uploader.onErrorItem = function(fileItem, response, status, headers) {
             console.info('onErrorItem', fileItem, response, status, headers);
